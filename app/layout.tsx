@@ -15,8 +15,11 @@ export const viewport = {
   maximumScale: 1, // Disable auto-zoom on mobile Safari
 };
 
-const LIGHT_THEME_COLOR = 'hsl(0 0% 100%)';
-const DARK_THEME_COLOR = 'hsl(240deg 10% 3.92%)';
+// Set the light and dark theme colors
+const LIGHT_THEME_COLOR = '#227f9d'; // Use primary color for light theme
+const DARK_THEME_COLOR = '#1a1a1a'; // Dark background color
+
+// Theme color script to update the theme color in the meta tag
 const THEME_COLOR_SCRIPT = `\
 (function() {
   var html = document.documentElement;
@@ -41,10 +44,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-    >
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -52,21 +52,24 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased bg-[#f0f4f8] text-gray-800 dark:bg-[#1a1a1a] dark:text-white">
+      <body className="antialiased bg-[#e0f7fa] text-gray-800 dark:bg-[#1a1a1a] dark:text-white">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <Toaster position="top-center" toastOptions={{
-            style: {
-              background: '#227f9d',
-              color: '#fff',
-              borderRadius: '8px',
-            },
-            duration: 3000,
-          }} />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                background: '#227f9d', // Primary color for Toaster
+                color: '#fff', // White text
+                borderRadius: '8px',
+              },
+              duration: 3000,
+            }}
+          />
           {children}
         </ThemeProvider>
       </body>
